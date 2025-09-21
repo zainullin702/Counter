@@ -1,23 +1,14 @@
+import {useState} from 'react';
 import './index.scss';
-import { useState } from 'react';
+import Modal from './Components/Modal/Modal';
 
 function App() {
-  const [count, setCount] = useState(0)
-  const onClickPlus = () => {
-    setCount(count + 1)
-  } 
-  const onClickMinus = () => {
-    setCount(count - 1)
-  }
-
+  const [isOpen, setOpen] = useState(false)
+  const togglePopUp = () => setOpen(!isOpen)
   return (
     <div className="App">
-      <div>
-        <h2>Counter:</h2>
-        <h1>{count}</h1>
-        <button onClick={onClickMinus} className="minus">- Minus</button>
-        <button onClick={onClickPlus} className="plus">Plus +</button>
-      </div>
+      <button onClick={togglePopUp} className="open-modal-btn">✨ Открыть окно</button>
+      <Modal isOpen={isOpen} onClose={togglePopUp} />
     </div>
   );
 }
